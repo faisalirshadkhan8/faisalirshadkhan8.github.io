@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FI">
+  <!--
+    The site wordmark as a favicon: initials in the paper tone on the
+    coral accent, with the full stop that follows "fi." in the header.
+
+    The letters are drawn as paths rather than <text>. A favicon is
+    rendered by the browser chrome, by bookmark managers and by the OS,
+    none of which reliably have Roboto, so a text element would fall back
+    to whatever is installed and the mark would change shape per machine.
+    F and I are entirely orthogonal, so paths cost nothing in fidelity.
+
+    Sized for 16px first, where a favicon is seen most: a filled tile
+    rather than an outline, and stems heavy enough to survive the
+    downscale. The corner radius matches the site's rounded-lg cards.
+  -->
+  <rect width="64" height="64" rx="14" fill="#e45447" />
+
+  <g fill="#f2f0ee">
+    <!-- F: stem, top arm, middle bar -->
+    <path d="M15 17h15v6.5H15z" />
+    <path d="M15 17h7.5v30H15z" />
+    <path d="M15 28h13v6H15z" />
+
+    <!-- I -->
+    <path d="M36 17h7.5v30H36z" />
+
+    <!-- The accent dot, as in the header wordmark -->
+    <circle cx="51.5" cy="43.5" r="3.6" />
+  </g>
+</svg>
