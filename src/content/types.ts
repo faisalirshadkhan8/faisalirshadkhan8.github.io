@@ -62,6 +62,16 @@ export interface Profile {
   heroProof: string | null;
   /** Reasons offered when the hero's contact disc is opened. */
   contactReasons: ContactReason[];
+  /**
+   * Cal.com booking link as "username/event-slug", e.g.
+   * "faisalirshad/30min". Null hides every booking affordance.
+   */
+  calLink: string | null;
+  /**
+   * Cal.com embed namespace, as shown in their generated snippet. Keeps
+   * this embed's config isolated from any other on the page.
+   */
+  calNamespace: string | null;
   /** Path to the résumé within /public, or null to hide résumé links. */
   resumeHref: string | null;
   /**

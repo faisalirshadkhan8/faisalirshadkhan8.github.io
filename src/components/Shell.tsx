@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { Icon } from "./Sprite";
-import { SiteHeader } from "./SiteHeader";
+import { Dock } from "./Dock";
+import { ThemeToggle } from "./ThemeToggle";
 import { profile } from "@/content/profile";
 import { asset } from "@/content/site";
 
@@ -21,17 +22,13 @@ export function Shell({ children }: { children: ReactNode }) {
           className="mx-auto max-w-6xl p-2 sm:rounded-lg md:p-8 md:shadow-2xl"
           style={{ background: "var(--surface-card)" }}
         >
-          {/*
-            One header instance, positioned differently by breakpoint:
-            on mobile the wordmark shares its row (order-first), while
-            from md the rail takes the left column and the nav the right.
-          */}
           <div className="flex flex-col md:flex-row">
             <div className="flex shrink-0 items-start justify-between md:w-32 md:block">
               <Link href="/" className="mark" aria-label={profile.name}>
                 {profile.initials}
                 <span>.</span>
               </Link>
+              <ThemeToggle className="md:hidden" />
               <div className="mt-64 hidden md:block">
                 {profile.socials.map((s) => (
                   <a
@@ -45,11 +42,11 @@ export function Shell({ children }: { children: ReactNode }) {
                     <Icon id={s.kind} className="text-2xl" />
                   </a>
                 ))}
+                <ThemeToggle className="mt-2 block" />
               </div>
             </div>
 
             <div className="min-w-0 md:flex-1">
-              <SiteHeader />
               <main id="main">{children}</main>
             </div>
           </div>
@@ -57,6 +54,7 @@ export function Shell({ children }: { children: ReactNode }) {
       </div>
 
       <SiteFooter />
+      <Dock />
     </>
   );
 }
@@ -64,7 +62,7 @@ export function Shell({ children }: { children: ReactNode }) {
 function SiteFooter() {
   return (
     <div
-      className="mx-auto max-w-6xl p-2 md:p-8"
+      className="dock-offset mx-auto max-w-6xl p-2 md:p-8"
       style={{ color: "var(--text-body)" }}
     >
       <footer className="mt-10 md:flex">

@@ -61,6 +61,17 @@ export const profile: Profile = {
         "— ",
     },
   ],
+  /*
+    Cal.com booking link, "username/event-slug". Null removes every
+    booking affordance, including the dock pill.
+
+    Note: the snippet Cal.com generates carries whatever username was in
+    effect when the event was made, so it still said
+    faisal-irshad-khan-ay5jnl and 404s. This is the corrected link.
+  */
+  calLink: "faisal-irshad/book-a-call-with-faisal",
+  /** Cal.com namespace, as shown in their embed snippet. */
+  calNamespace: "book-a-call-with-faisal",
   resumeHref: "/assets/Faisal_CV_SE__LHR_.pdf",
   // Illustrated avatar at rest; the real photograph on the reverse.
   avatar: "/assets/images/avatar.webp",
