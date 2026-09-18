@@ -402,21 +402,25 @@ body {
 .svg-btn rect {
   transition: width 0.4s var(--ease-spring), fill 0.4s ease, opacity 0.4s ease;
 }
-/* The label sits to the right of the 60px disc and must clear it, so it
-   is anchored at the start rather than centred — a centred anchor put
-   longer labels back over the circle. */
+/*
+  At rest the label sits to the right of a 60px disc. On hover the disc
+  grows into a pill that ends up *behind* the label, so the pill has to
+  be wide enough to contain it: --pill is set per button from the label's
+  own width, rather than the fixed 160px that clipped "SEE MY WORKS".
+*/
 .svg-btn text {
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: 17px;
+  letter-spacing: 0.02em;
   fill: var(--text-strong);
   transition: fill 0.2s linear;
 }
 .svg-btn:hover rect,
 .svg-btn:focus-visible rect {
-  width: 160px;
+  width: var(--pill, 160px);
   fill: var(--color-prime);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 .svg-btn:hover text,
 .svg-btn:focus-visible text {

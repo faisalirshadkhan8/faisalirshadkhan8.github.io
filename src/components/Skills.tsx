@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
+import { SvgButton } from "./SvgButton";
 import { asset } from "@/content/site";
 import { skills } from "@/content/profile";
 
@@ -92,28 +92,11 @@ export function Skills() {
                 className={`skill-reveal skill-reveal--${skills.length + 1} mt-8 flex justify-center`}
                 style={{ "--d": `${0.1 + skills.length * 0.15}s` } as React.CSSProperties}
               >
-                <Link className="svg-btn" href="/#works" aria-label="See my works">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="220"
-                    height="60"
-                    viewBox="0 0 220 60"
-                  >
-                    <rect
-                      x="0"
-                      y="0"
-                      width="60"
-                      height="60"
-                      rx="30"
-                      ry="30"
-                      fill="var(--color-prime)"
-                      opacity="0.4"
-                    />
-                    <text x="75" y="38" textAnchor="start">
-                      SEE MY WORKS
-                    </text>
-                  </svg>
-                </Link>
+                <SvgButton
+                  href="/#works"
+                  label="SEE MY WORKS"
+                  ariaLabel="See my works"
+                />
               </div>
             </div>
 

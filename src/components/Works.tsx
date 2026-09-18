@@ -1,4 +1,5 @@
 import { ProjectCard } from "./ProjectCard";
+import { SvgButton } from "./SvgButton";
 import { projectsByCategory } from "@/content/projects";
 import { profile } from "@/content/profile";
 import { asset } from "@/content/site";
@@ -38,33 +39,12 @@ export function Works() {
           <p className="mb-3 text-lg font-bold md:mb-0">
             I cook with these ingredients 👉
           </p>
-          <a
-            className="svg-btn"
+          <SvgButton
             href={asset(profile.resumeHref)}
+            label="MY RESUME"
             download
-            aria-label="Download my resume"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="220"
-              height="60"
-              viewBox="0 0 220 60"
-            >
-              <rect
-                x="0"
-                y="0"
-                width="60"
-                height="60"
-                rx="30"
-                ry="30"
-                fill="var(--color-prime)"
-                opacity="0.4"
-              />
-              <text x="75" y="38" textAnchor="start">
-                MY RESUME
-              </text>
-            </svg>
-          </a>
+            ariaLabel="Download my resume"
+          />
         </div>
       )}
     </section>
