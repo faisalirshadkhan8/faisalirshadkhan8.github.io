@@ -1462,6 +1462,8 @@ button.talk {
 .dock {
   position: fixed;
   z-index: 60;
+  /* Magnified icons and their tooltips rise above the pill. */
+  overflow: visible;
   left: 50%;
   transform: translateX(-50%);
   /* Clears the home indicator on phones without hardcoding a guess. */
@@ -1473,7 +1475,9 @@ button.talk {
   display: flex;
   align-items: center;
   gap: 0.15rem;
-  padding: 0.4rem;
+  /* Vertical padding leaves headroom for a magnified icon so it grows
+     inside the pill rather than bursting through it. */
+  padding: 0.85rem 0.55rem;
   border-radius: 999px;
   background: var(--dock-bg);
   border: 1px solid var(--dock-border);
@@ -1497,6 +1501,16 @@ button.talk {
   --dock-hover: rgba(242, 240, 238, 0.1);
 }
 
+/*
+  --mag is written per item by useDockMagnify, from the pointer's
+  distance to that item's centre. It defaults to 1, so with JS off, on
+  touch, or under reduced motion the dock simply sits at rest.
+
+  The transform grows the item from its bottom edge, so icons rise out
+  of the dock rather than pushing through its floor. Scaling the box
+  rather than the icon means neighbours are displaced too, which is what
+  produces the wave.
+*/
 .dock__item {
   position: relative;
   display: grid;
@@ -1506,10 +1520,22 @@ button.talk {
   border-radius: 999px;
   color: var(--text-muted);
   cursor: pointer;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transform: scale(var(--mag, 1));
+  transform-origin: center center;
+  /* Short, because the pointer already moves continuously; a long one
+     would lag behind the cursor instead of tracking it. */
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.12s ease-out;
 }
 
-.dock__item:hover,
+.dock__item:hover {
+  color: var(--text-strong);
+}
+
+/* Keyboard users get no magnification (it follows the pointer), so the
+   focus ring is the only signal and must stay. */
 .dock__item:focus-visible {
   color: var(--text-strong);
   background: var(--dock-hover);
@@ -1536,11 +1562,12 @@ button.talk {
 }
 
 /* Tooltips, as in the reference: label above the icon on hover only. */
+/* Counter-scaled, or the label would grow with its magnified parent. */
 .dock__tip {
   position: absolute;
-  bottom: calc(100% + 0.5rem);
+  bottom: calc(100% + 0.9rem);
   left: 50%;
-  transform: translateX(-50%) translateY(0.25rem);
+  transform: translateX(-50%) translateY(0.25rem) scale(calc(1 / var(--mag, 1)));
   padding: 0.25rem 0.55rem;
   border-radius: 0.4rem;
   background: var(--surface-card);
@@ -1561,7 +1588,7 @@ button.talk {
 .dock__item:focus-visible .dock__tip {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(0) scale(calc(1 / var(--mag, 1)));
   transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s;
 }
 

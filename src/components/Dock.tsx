@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import type { Route } from "next";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Icon } from "./Sprite";
 import { BookButton } from "./BookButton";
+import { useDockMagnify } from "@/lib/useDockMagnify";
 import { profile } from "@/content/profile";
 import { asset } from "@/content/site";
 
@@ -34,6 +35,9 @@ const ITEMS: DockItem[] = [
 
 export function Dock() {
   const [active, setActive] = useState<string>("main");
+  const listRef = useRef<HTMLUListElement>(null);
+
+  useDockMagnify(listRef);
 
   useEffect(() => {
     const sections = ITEMS.map((i) => document.getElementById(i.id)).filter(
@@ -80,12 +84,13 @@ export function Dock() {
 
   return (
     <nav className="dock" aria-label="Sections">
-      <ul className="dock__list">
+      <ul className="dock__list" ref={listRef}>
         {ITEMS.map((item) => (
           <li key={item.id}>
             <Link
               href={item.href}
               className="dock__item"
+              data-magnify=""
               aria-label={item.label}
               aria-current={active === item.id ? "true" : undefined}
               data-active={active === item.id ? "" : undefined}
@@ -102,6 +107,7 @@ export function Dock() {
           <li>
             <a
               className="dock__item"
+              data-magnify=""
               href={asset(profile.resumeHref)}
               download
               aria-label="Download resume"
