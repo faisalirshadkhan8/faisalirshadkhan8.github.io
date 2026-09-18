@@ -1,6 +1,10 @@
 import type { BlogPost } from "./types";
 
 /**
+ * DORMANT: the /blog routes were removed, so nothing renders this yet.
+ * Kept, with src/lib/prose.ts, so writing can be switched back on by
+ * restoring src/app/blog/ and the nav entries in SiteHeader and Shell.
+ *
  * Posts live here as plain data so the site builds with no MDX pipeline
  * and no runtime filesystem reads (both of which fight static export).
  *

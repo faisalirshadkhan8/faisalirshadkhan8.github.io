@@ -81,11 +81,6 @@ function SiteFooter() {
                 works
               </Link>
             </li>
-            <li className="inline-block text-xs uppercase md:mr-6">
-              <Link href="/blog" className="f-link">
-                writing
-              </Link>
-            </li>
             {profile.resumeHref && (
               <li className="inline-block text-xs uppercase md:mr-6">
                 <a href={asset(profile.resumeHref)} download className="f-link">

@@ -9,7 +9,7 @@ import { site, absoluteUrl } from "@/content/site";
 
 /**
  * The home page stays a tight one-pager. Depth lives at /projects/<slug>/
- * and /blog/<slug>/ rather than growing this page.
+ * rather than growing this page.
  */
 export default function Home() {
   const personJsonLd = {

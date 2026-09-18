@@ -19,7 +19,6 @@ type NavItem =
 function navItems(): NavItem[] {
   const items: NavItem[] = [
     { label: "works", href: "/#works", icon: "file" },
-    { label: "writing", href: "/blog", icon: "comment" },
   ];
   if (profile.resumeHref) {
     items.push({
