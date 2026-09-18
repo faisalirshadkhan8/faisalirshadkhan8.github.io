@@ -14,7 +14,9 @@ export const profile: Profile = {
   location: "Lahore, Pakistan",
   email: "faisalirshadkhan8@gmail.com",
   heroStack: ["Python", "FastAPI", "Next.js", "Supabase", "LangChain"],
-  heroProof: "3 production apps shipped at Implement AI",
+  // Null hides it. The same fact is already the "3" stat and appears in
+  // the bio, so the hero does not need to say it a third time.
+  heroProof: null,
   resumeHref: "/assets/Faisal_CV_SE__LHR_.pdf",
   portrait: null,
   socials: [
