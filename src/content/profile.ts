@@ -102,11 +102,29 @@ export const experience: Job[] = [
     // The employer, not the product. implementai.io is linked from the
     // summary and the status lines instead.
     href: "https://www.techanzy.com/",
-    role: "Associate Software Engineer",
-    period: "Feb 2025 — present",
     location: "Lahore, Pakistan",
-    summary:
-      "Techanzy builds Implement AI, a commercial AI Operating System used by clients in the UK, Ireland and UAE. I own three of its production applications: AIOS Core, AIOS Portal and the Admin App, each built and maintained as the sole developer, in a PR workflow where every change goes through team lead review.",
+    about:
+      "Techanzy builds Implement AI, a commercial AI Operating System used by clients in the UK, Ireland and UAE.",
+    // Newest first.
+    roles: [
+      {
+        title: "Associate Software Engineer",
+        period: "May 2025 — present",
+        summary:
+          "I own three of Implement AI's production applications, each built and maintained as the sole developer, in a PR workflow where every change goes through team lead review.",
+        highlights: [
+          "AIOS Core: internal analytics and operations, including a read-only MCP server exposing platform data to AI agents",
+          "AIOS Portal: a no-code workflow builder with a persistent orchestrator and human-in-the-loop checkpoints",
+          "AIOS Admin: Stripe payments with webhook-driven confirmation, Cloudflare Turnstile auth and SendGrid email",
+        ],
+      },
+      {
+        title: "Software Engineer Trainee",
+        period: "Feb 2025 — May 2025",
+        summary:
+          "Joined as a trainee and moved onto production work within the first quarter, learning the platform and the team's review standards before taking ownership of my own applications.",
+      },
+    ],
   },
 ];
 

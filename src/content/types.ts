@@ -94,16 +94,31 @@ export interface Profile {
  * products of one's own, and a portfolio that does not say so invites
  * the wrong reading.
  */
+/** One role held at a company. */
+export interface Role {
+  title: string;
+  /** e.g. "May 2025 — present". */
+  period: string;
+  /** What this role actually covered. One or two sentences. */
+  summary: string;
+  /** Optional specifics, shown as a short list under the summary. */
+  highlights?: string[];
+}
+
+/**
+ * One employer, with every role held there. Grouping the roles under
+ * the company makes a promotion read as progression rather than as two
+ * unrelated jobs.
+ */
 export interface Job {
   company: string;
   /** Link to the employer or the product, if there is a public one. */
   href?: string;
-  role: string;
-  /** e.g. "Feb 2025 — present". */
-  period: string;
   location: string;
-  /** One or two sentences: what the company does, and what you own. */
-  summary: string;
+  /** One sentence on what the company does. */
+  about?: string;
+  /** Newest first. */
+  roles: Role[];
 }
 
 export interface SkillBlock {

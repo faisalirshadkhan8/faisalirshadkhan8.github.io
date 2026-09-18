@@ -994,58 +994,46 @@ button.talk {
   Experience.
   Same hairline-rule language as the works index below it, so the two
   read as one continuous record rather than two unrelated treatments.
+/*-------------------------------------------------------------------*\
+  Experience timeline.
+
+  Roles nest under their employer, so two titles at one company read as
+  a promotion rather than as separate jobs. The rail is a border on the
+  role list and the markers are ::before circles — decorative, drawn in
+  CSS, and absent from the accessibility tree, where the heading levels
+  already carry the structure.
 \*-------------------------------------------------------------------*/
 
-.exp {
-  margin-top: 1.5rem;
+.tl {
+  margin-top: 2rem;
+}
+
+.tl__job + .tl__job {
+  margin-top: 3rem;
+  padding-top: 3rem;
   border-top: 1px solid var(--rule);
 }
 
-.exp__row {
-  padding: 1.75rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.exp__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.4rem 1rem;
-}
-
-.exp__company {
+.tl__company {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-strong);
 }
 
-.exp__link {
+.tl__link {
   border-bottom: 1px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.exp__link:hover,
-.exp__link:focus-visible {
+.tl__link:hover,
+.tl__link:focus-visible {
   color: var(--color-prime);
   border-bottom-color: var(--color-prime);
 }
 
-.exp__period {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  font-variant-numeric: tabular-nums;
-}
-
-.exp__role {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
-  margin-top: 0.35rem;
+.tl__location {
+  margin-top: 0.3rem;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -1053,19 +1041,114 @@ button.talk {
   color: var(--text-muted);
 }
 
-.exp__dot {
+.tl__about {
+  max-width: 62ch;
+  margin-top: 0.8rem;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/*-----------------------------------*\
+  The rail
+\*-----------------------------------*/
+
+.tl__roles {
+  margin-top: 1.75rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--rule);
+}
+
+.tl__role {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.tl__role:last-child {
+  padding-bottom: 0;
+}
+
+/* The marker sits on the rail, not beside it: half its width past the
+   padding edge, so it straddles the 1px border exactly. */
+.tl__role::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.5rem - 5px);
+  top: 0.35rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--surface-page);
+  border: 2px solid var(--rule);
+}
+
+/* Current role: filled in the accent, so the eye lands on it first. */
+.tl__role:first-child::before {
+  background: var(--color-prime);
+  border-color: var(--color-prime);
+}
+
+.tl__period {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tl__role:first-child .tl__period {
   color: var(--color-prime);
 }
 
-.exp__location {
-  font-weight: 400;
+.tl__title {
+  margin-top: 0.2rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-strong);
 }
 
-.exp__summary {
-  max-width: 66ch;
-  margin-top: 0.85rem;
+.tl__summary {
+  max-width: 62ch;
+  margin-top: 0.5rem;
   font-size: 15px;
   line-height: 1.65;
+}
+
+.tl__points {
+  margin-top: 0.85rem;
+}
+
+.tl__points li {
+  position: relative;
+  max-width: 62ch;
+  padding-left: 1rem;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.tl__points li + li {
+  margin-top: 0.5rem;
+}
+
+.tl__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-prime);
+}
+
+@media (min-width: 768px) {
+  .tl__roles {
+    padding-left: 2rem;
+  }
+  .tl__role::before {
+    left: calc(-2rem - 5px);
+  }
 }
 
 /*-------------------------------------------------------------------*\

@@ -1,11 +1,13 @@
 import { experience } from "@/content/profile";
 
 /**
- * Employment, stated plainly above the works index.
+ * Employment as a timeline.
  *
- * Without it the three AIOS applications sat under a bare "Implement AI"
- * heading, which reads as though the product and its clients were his
- * own. They are his employer's; what is his is the engineering.
+ * Roles are nested under their employer rather than listed flat, so two
+ * titles at the same company read as a promotion rather than as two
+ * separate jobs. The rail and its markers are decorative, so they are
+ * drawn in CSS and hidden from assistive tech; the heading structure
+ * alone carries the meaning.
  */
 export function Experience() {
   if (experience.length === 0) return null;
@@ -15,17 +17,17 @@ export function Experience() {
       <h2 className="section-kicker">Experience</h2>
       <div className="kj-border" />
 
-      <ul className="exp">
+      <ol className="tl">
         {experience.map((job) => (
-          <li key={`${job.company}-${job.period}`} className="exp__row">
-            <div className="exp__head">
-              <h3 className="exp__company">
+          <li key={job.company} className="tl__job">
+            <div className="tl__head">
+              <h3 className="tl__company">
                 {job.href ? (
                   <a
                     href={job.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="exp__link"
+                    className="tl__link"
                   >
                     {job.company}
                   </a>
@@ -33,21 +35,30 @@ export function Experience() {
                   job.company
                 )}
               </h3>
-              <span className="exp__period">{job.period}</span>
+              <p className="tl__location">{job.location}</p>
+              {job.about && <p className="tl__about">{job.about}</p>}
             </div>
 
-            <p className="exp__role">
-              {job.role}
-              <span className="exp__dot" aria-hidden="true">
-                ·
-              </span>
-              <span className="exp__location">{job.location}</span>
-            </p>
+            <ol className="tl__roles">
+              {job.roles.map((role) => (
+                <li key={role.title} className="tl__role">
+                  <p className="tl__period">{role.period}</p>
+                  <h4 className="tl__title">{role.title}</h4>
+                  <p className="tl__summary">{role.summary}</p>
 
-            <p className="exp__summary">{job.summary}</p>
+                  {role.highlights?.length ? (
+                    <ul className="tl__points">
+                      {role.highlights.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
           </li>
         ))}
-      </ul>
+      </ol>
     </section>
   );
 }
