@@ -32,6 +32,16 @@ export interface Profile {
   tagline: string;
   location: string;
   email: string;
+  /**
+   * The stack shown as a meta line in the hero. Keep it to the handful
+   * you actually want to be hired for, not everything you have touched.
+   */
+  heroStack: string[];
+  /**
+   * One short proof point beside the hero's call to action, e.g. a count
+   * of shipped work. Null to omit it.
+   */
+  heroProof: string | null;
   /** Path to the résumé within /public, or null to hide résumé links. */
   resumeHref: string | null;
   /** Square portrait within /public, or null to render an initials medallion. */

@@ -358,9 +358,167 @@ body {
   }
 }
 
+/*-------------------------------------------------------------------*\
+  Hero layout.
+
+  The previous version pinned the copy to a 16rem column (Tailwind's
+  md:w-64) while the row beside it stayed empty, so a two-line sentence
+  wrapped into five cramped ones with a large void to its right. The
+  copy column is now sized by its own measure and the figure takes the
+  remaining space, which also closes the ~300px gap that used to sit
+  between the hero and the next section.
+\*-------------------------------------------------------------------*/
+
+.hero {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    /* The copy leads; the medallion is support, so it gets the smaller
+       share rather than an equal half. */
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 3rem;
+  }
+}
+
+.hero__copy {
+  min-width: 0;
+}
+
+.hero__name {
+  font-size: clamp(2.75rem, 9vw, 4rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.hero__role {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+}
+
+/* When the role line wraps, the separator would otherwise be left
+   stranded at the end of the first line. */
+.hero__dot {
+  color: var(--color-prime);
+}
+
+@media (max-width: 520px) {
+  .hero__dot {
+    display: none;
+  }
+}
+
+.hero__location {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/*
+  55ch is the readable measure. The old md:w-64 was roughly 28ch, which
+  is why the sentence broke every four or five words.
+*/
+.hero__tagline {
+  max-width: 55ch;
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.hero__stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.hero__stack li {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+
+.hero__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.hero__proof {
+  max-width: 20ch;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* The proof point is prefixed by a coral rule rather than a bullet, to
+   echo the section rules used elsewhere. */
+.hero__proof::before {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin: 0 auto 0.6rem;
+  background: var(--color-prime);
+}
+
+.hero__figure {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .hero__role,
+  .hero__stack,
+  .hero__cta {
+    justify-content: flex-start;
+  }
+
+  .hero__tagline,
+  .hero__proof {
+    text-align: left;
+  }
+
+  .hero__cta {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .hero__proof {
+    max-width: 22ch;
+  }
+
+  .hero__proof::before {
+    margin: 0 0 0.5rem;
+  }
+}
+
 .hero-figure {
   position: relative;
-  width: min(330px, 78vw);
+  width: min(260px, 62vw);
   aspect-ratio: 1;
   margin-inline: auto;
   border-radius: 50%;
@@ -371,7 +529,7 @@ body {
 
 @media (min-width: 1280px) {
   .hero-figure {
-    width: 380px;
+    width: 300px;
   }
 }
 

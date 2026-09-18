@@ -97,7 +97,7 @@ export const projects: Project[] = [
       "A production-grade job application tracker with async AI features, 2FA, and 143+ automated tests behind CI/CD.",
     category: "Personal Projects",
     period: "2025",
-    href: "https://github.com/faisalirshadkhan8",
+    href: "https://github.com/faisalirshadkhan8/Synq-Backend",
     visual: { kind: "gradient", from: "#5b5bd6", to: "#3a3a96" },
     order: 4,
     detail: {

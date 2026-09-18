@@ -52,7 +52,7 @@ export function Skills() {
 
   return (
     <div className="skills-pin">
-      <section id="skills" className="skills-sticky mt-12 md:mt-32">
+      <section id="skills" className="skills-sticky mt-16 md:mt-24">
         <div className="w-full">
           <h2
             className="text-3xl leading-none font-bold capitalize md:text-4xl"

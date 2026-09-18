@@ -7,10 +7,14 @@ export const profile: Profile = {
   nameLines: ["Faisal", "Irshad"],
   initials: "fi",
   role: "Associate Software Engineer",
+  // Shorter than before: at a comfortable measure this is two lines, and
+  // the stack it used to name is now its own meta row.
   tagline:
-    "Software Engineer in Lahore, building production backends and AI agent systems with Python, FastAPI and Next.js. Currently shipping three apps on a commercial AI Operating System.",
+    "I build production backends and AI agent systems, and I own them end to end: architecture, deployment, and the maintenance months later.",
   location: "Lahore, Pakistan",
   email: "faisalirshadkhan8@gmail.com",
+  heroStack: ["Python", "FastAPI", "Next.js", "Supabase", "LangChain"],
+  heroProof: "3 production apps shipped at Implement AI",
   resumeHref: "/assets/Faisal_CV_SE__LHR_.pdf",
   portrait: null,
   socials: [
