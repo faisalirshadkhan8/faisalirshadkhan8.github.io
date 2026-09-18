@@ -27,7 +27,7 @@ export default function Home() {
     worksFor: {
       "@type": "Organization",
       name: "Techanzy Limited",
-      url: "https://implementai.io/",
+      url: "https://www.techanzy.com/",
     },
     alumniOf: {
       "@type": "CollegeOrUniversity",

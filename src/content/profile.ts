@@ -86,7 +86,9 @@ export const profile: Profile = {
 export const experience: Job[] = [
   {
     company: "Techanzy Limited",
-    href: "https://implementai.io/",
+    // The employer, not the product. implementai.io is linked from the
+    // summary and the status lines instead.
+    href: "https://www.techanzy.com/",
     role: "Associate Software Engineer",
     period: "Feb 2025 — present",
     location: "Lahore, Pakistan",
