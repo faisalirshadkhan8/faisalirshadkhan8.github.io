@@ -8,7 +8,7 @@ export const profile: Profile = {
   initials: "fi",
   role: "Associate Software Engineer",
   tagline:
-    "Software Engineer in Lahore, building production backends and AI agent systems with Python, FastAPI and Next.js — currently shipping three apps on a commercial AI Operating System.",
+    "Software Engineer in Lahore, building production backends and AI agent systems with Python, FastAPI and Next.js. Currently shipping three apps on a commercial AI Operating System.",
   location: "Lahore, Pakistan",
   email: "faisalirshadkhan8@gmail.com",
   resumeHref: "/assets/Faisal_CV_SE__LHR_.pdf",
@@ -35,7 +35,7 @@ export const skills: SkillBlock[] = [
   },
   {
     title: "ai systems",
-    body: "MCP servers, RAG pipelines and agent workflows with LangChain and CrewAI — including a workflow orchestrator that sequences agent steps, survives a dropped connection, and pauses for human review before it continues.",
+    body: "MCP servers, RAG pipelines and agent workflows with LangChain and CrewAI. That includes a workflow orchestrator that sequences agent steps, survives a dropped connection, and pauses for human review before it continues.",
   },
   {
     title: "frontend",
@@ -85,10 +85,10 @@ export const statusLines: StatusLine[] = [
 ];
 
 export const funFact =
-  "I built and now maintain three production apps at once — Core, Portal and Admin — as the only developer on each 🚀";
+  "I built and now maintain three production apps at once (Core, Portal and Admin) as the only developer on each 🚀";
 
 export const readme: string[] = [
-  "I'm a Software Engineer who likes the part of the job that has to keep working when nobody is watching: the run that resumes after a dropped connection, the permission check that holds at every layer, the webhook that reconciles whether or not the user stayed on the page. Most of what I've shipped lives there.",
-  "At Techanzy I work on Implement AI, a commercial AI Operating System with clients in the UK, Ireland and UAE. I own three production applications on it — AIOS Core for internal analytics and operations, AIOS Portal for no-code agent workflows, and the Admin App for payments, security and access control — each built as the sole developer, in a PR workflow where every change goes through team lead review.",
-  "The through-line is ownership. I'd rather hold a system end to end — architecture, implementation, deployment and the maintenance months later — than hand it off at the boundary. Clean architecture, DTOs and use cases aren't ceremony to me; they're what makes that ownership survivable.",
+  "I'm a Software Engineer who likes the part of the job that has to keep working when nobody is watching. The run that resumes after a dropped connection, the permission check that holds at every layer, the webhook that reconciles whether or not the user stayed on the page. Most of what I've shipped lives there.",
+  "At Techanzy I work on Implement AI, a commercial AI Operating System with clients in the UK, Ireland and UAE. I own three production applications on it: AIOS Core for internal analytics and operations, AIOS Portal for no-code agent workflows, and the Admin App for payments, security and access control. Each was built as the sole developer, in a PR workflow where every change goes through team lead review.",
+  "The through-line is ownership. I'd rather hold a system end to end, from architecture and implementation through deployment and the maintenance months later, than hand it off at the boundary. Clean architecture, DTOs and use cases aren't ceremony to me. They're what makes that ownership survivable.",
 ];

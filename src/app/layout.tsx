@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Sprite } from "@/components/Sprite";
 import { Shell } from "@/components/Shell";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { themeInitScript } from "@/components/ThemeToggle";
 import { site, absoluteUrl } from "@/content/site";
 import { profile } from "@/content/profile";
@@ -57,6 +58,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <SmoothScroll />
         <Sprite />
         <Shell>{children}</Shell>
       </body>

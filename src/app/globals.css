@@ -60,8 +60,34 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
+  /* Sections land clear of the header when jumped to. */
   scroll-padding-top: 6rem;
+  /*
+    Covers anchor jumps before Lenis mounts, and is the whole behaviour
+    if its script never runs. Lenis sets `html.lenis` once it takes over,
+    and the rule below stands this down so the two never animate the
+    same scroll at once.
+  */
+  scroll-behavior: smooth;
+}
+
+/*-------------------------------------------------------------------*\
+  Momentum scrolling (Lenis)
+\*-------------------------------------------------------------------*/
+
+html.lenis {
+  scroll-behavior: auto !important;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+/* While a programmatic scroll animates, ignore wheel input so the user
+   cannot fight it halfway through. */
+html.lenis-stopped {
+  overflow: hidden;
 }
 
 body {

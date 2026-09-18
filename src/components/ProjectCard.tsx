@@ -50,7 +50,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <Link
       className="proj"
       href={`/projects/${project.slug}`}
-      aria-label={`${project.name} — case study`}
+      aria-label={`${project.name}, case study`}
     >
       {inner}
     </Link>

@@ -16,7 +16,7 @@ export const posts: BlogPost[] = [
     slug: "hello",
     title: "Hello",
     description:
-      "A placeholder post — replace it with your own writing, or delete it once you have a real one.",
+      "A placeholder post. Replace it with your own writing, or delete it once you have a real one.",
     date: "2026-09-18",
     tags: ["writing"],
     // Static export needs at least one published post to generate the
@@ -29,7 +29,7 @@ export const posts: BlogPost[] = [
 Paragraphs are plain lines. Blank lines separate blocks. Lists look like this:
 
 - a line starting with a dash becomes a list item
-- two dashes in a row do not nest — the parser is deliberately flat
+- lists do not nest; the parser is deliberately flat
 
 Fenced blocks render as code:
 
