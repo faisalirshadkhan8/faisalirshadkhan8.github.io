@@ -476,11 +476,35 @@ button.talk {
   transform: translateX(3px);
 }
 
+/* The escape hatch for anyone who would rather use their own client,
+   plus the address itself for anyone who wants neither. */
+.contact__alt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--rule);
+}
+
+.contact__alt-link {
+  font-size: 12px;
+  color: var(--text-muted);
+  border-bottom: 1px solid transparent;
+  align-self: flex-start;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact__alt-link:hover,
+.contact__alt-link:focus-visible {
+  color: var(--color-prime);
+  border-bottom-color: var(--color-prime);
+}
+
 .contact__copy {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
-  margin-top: 0.75rem;
   padding: 0;
   font-size: 12px;
   color: var(--text-muted);

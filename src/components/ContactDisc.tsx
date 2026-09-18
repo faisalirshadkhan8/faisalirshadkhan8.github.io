@@ -26,6 +26,27 @@ export function ContactDisc() {
     return `mailto:${profile.email}?${q}`;
   }
 
+  /**
+   * Gmail's web compose, prefilled the same way as the mailto:.
+   *
+   * mailto: only does anything when the operating system has a mail
+   * client registered for it. Someone reading webmail in a browser tab
+   * clicks and nothing happens at all, with no error to explain it, so
+   * the reasons led nowhere for most visitors. This opens in a tab
+   * instead, and the mailto: stays available below for anyone who
+   * prefers their own client.
+   */
+  function gmail(subject: string, body: string) {
+    const q = new URLSearchParams({
+      view: "cm",
+      fs: "1",
+      to: profile.email,
+      su: subject,
+      body,
+    });
+    return `https://mail.google.com/mail/?${q.toString()}`;
+  }
+
   // Close on outside click or Escape, and hand focus back to the disc.
   useEffect(() => {
     if (!open) return;
@@ -121,7 +142,9 @@ export function ContactDisc() {
             <li key={reason.label}>
               <a
                 className="contact__reason"
-                href={mailto(reason.subject, reason.body)}
+                href={gmail(reason.subject, reason.body)}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setOpen(false)}
               >
                 {reason.label}
@@ -131,12 +154,25 @@ export function ContactDisc() {
           ))}
         </ul>
 
-        <button type="button" className="contact__copy" onClick={copyEmail}>
-          <span className="contact__address">{profile.email}</span>
-          <span className="contact__copy-state">
-            {copied ? "copied ✓" : "copy"}
-          </span>
-        </button>
+        <div className="contact__alt">
+          <a
+            className="contact__alt-link"
+            href={mailto(
+              profile.contactReasons[0]?.subject ?? "Hello",
+              profile.contactReasons[0]?.body ?? "",
+            )}
+            onClick={() => setOpen(false)}
+          >
+            use my own mail app
+          </a>
+
+          <button type="button" className="contact__copy" onClick={copyEmail}>
+            <span className="contact__address">{profile.email}</span>
+            <span className="contact__copy-state">
+              {copied ? "copied ✓" : "copy"}
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );
