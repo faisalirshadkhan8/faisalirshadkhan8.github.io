@@ -75,22 +75,54 @@ variables, so a new surface only needs defining in the two `:root` blocks.
 
 ## Deploying
 
-1. Push to a GitHub repo.
-2. **Settings → Pages → Source: GitHub Actions.**
-3. Push to `main`. The workflow in `.github/workflows/deploy.yml` builds and
-   publishes.
-4. Set `url` in `src/content/site.ts` to the deployed origin so canonical
-   and OG tags are right.
+The site is configured for a **user site** at
+`https://faisalirshadkhan8.github.io`, which means the repo must be named
+exactly `faisalirshadkhan8.github.io`.
 
-The workflow derives the base path from the repo name: a `<user>.github.io`
-repo serves from the root, any other repo from `/<repo>/`. Renaming the repo
-therefore does not break asset paths.
+### First deploy
 
-To build locally exactly as CI does:
+1. Create the repo on GitHub named `faisalirshadkhan8.github.io`. Public,
+   with no README, .gitignore or licence — this repo already has them.
+
+2. Add it as a remote and push:
+
+   ```bash
+   git remote add origin https://github.com/faisalirshadkhan8/faisalirshadkhan8.github.io.git
+   git push -u origin main
+   ```
+
+3. On GitHub: **Settings → Pages → Build and deployment → Source:
+   GitHub Actions**. Not "Deploy from a branch" — the workflow publishes
+   the built output, and that setting would serve the source instead.
+
+4. Watch the **Actions** tab. The first run takes 2–3 minutes. When it
+   goes green the site is live at
+   `https://faisalirshadkhan8.github.io`.
+
+### After that
+
+Every push to `main` rebuilds and republishes. Nothing else to do:
 
 ```bash
-NEXT_PUBLIC_BASE_PATH=/your-repo-name npm run build
+git add -A
+git commit -m "Update projects"
+git push
 ```
+
+### If the first deploy fails
+
+- **404 on every asset** — Pages source is set to a branch instead of
+  GitHub Actions, or the repo name does not match the URL.
+- **Blank page** — check the Actions log for a build failure. Reproduce
+  it locally with `npm run build`.
+- **Workflow never runs** — confirm the branch is `main`
+  (`git branch --show-current`), which is what the workflow watches.
+
+The workflow derives the base path from the repo name: a
+`<user>.github.io` repo serves from the root, any other repo from
+`/<repo>/`. If you ever rename the repo, update `url` in
+`src/content/site.ts` to match, or the canonical and OG tags will point
+at the old address.
 
 ## Accessibility
 
