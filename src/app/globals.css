@@ -391,18 +391,40 @@ button.talk {
   cursor: pointer;
 }
 
+/*
+  Enter and exit both animate. The panel was previously toggled with the
+  `hidden` attribute and a one-shot keyframe, so it faded in but vanished
+  on close, which read as snapping shut. It now stays in the DOM and
+  transitions in both directions; `visibility` is included so a closed
+  panel is neither clickable nor focusable.
+
+  The transition is on opacity/transform only, both compositor
+  properties, so opening never costs a layout pass.
+*/
 .contact__panel {
-  animation: panel-in 0.25s var(--ease-out-soft) both;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.4rem);
+  transition:
+    opacity 0.22s var(--ease-out-soft),
+    transform 0.28s var(--ease-out-soft),
+    visibility 0s linear 0.28s;
 }
 
-@keyframes panel-in {
-  from {
-    opacity: 0;
-    transform: translateY(0.4rem);
-  }
-  to {
-    opacity: 1;
-    transform: none;
+.contact__panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  /* No delay on the way in: visibility must flip before the fade starts. */
+  transition:
+    opacity 0.22s var(--ease-out-soft),
+    transform 0.28s var(--ease-spring),
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__panel {
+    transition-duration: 0.001ms;
   }
 }
 

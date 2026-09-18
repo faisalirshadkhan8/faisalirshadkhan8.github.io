@@ -31,7 +31,11 @@ export function ContactDisc() {
     if (!open) return;
     const disc = discRef.current;
 
-    panelRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+    // The panel is still `inert` on this tick; focus lands once React has
+    // painted the open state.
+    const focusFrame = requestAnimationFrame(() => {
+      panelRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+    });
 
     function onPointerDown(e: PointerEvent) {
       if (!wrapRef.current?.contains(e.target as Node)) setOpen(false);
@@ -46,6 +50,7 @@ export function ContactDisc() {
     document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
     return () => {
+      cancelAnimationFrame(focusFrame);
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
@@ -97,11 +102,17 @@ export function ContactDisc() {
         <div className="talk-pulse" aria-hidden="true" />
       </div>
 
+      {/*
+        Kept in the DOM so it can animate out; `inert` takes a closed
+        panel out of the tab order and hides it from assistive tech,
+        which `hidden` used to do before the exit transition needed it
+        to stay rendered.
+      */}
       <div
         id="contact-panel"
         ref={panelRef}
-        className="contact__panel"
-        hidden={!open}
+        className={`contact__panel${open ? " is-open" : ""}`}
+        inert={!open}
       >
         <p className="contact__prompt">What&rsquo;s this about?</p>
 
