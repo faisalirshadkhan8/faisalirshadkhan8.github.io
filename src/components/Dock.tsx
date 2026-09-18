@@ -54,7 +54,28 @@ export function Dock() {
     );
 
     sections.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    /*
+      The last section is short and sits at the end of the page, so it
+      can never reach the detection band above: the page runs out of
+      scroll first and the previous section stays lit. Within a screen
+      of the bottom, the last section is what the visitor is looking at.
+    */
+    const last = sections[sections.length - 1];
+    const onScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 120;
+      if (nearBottom) setActive(last.id);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (

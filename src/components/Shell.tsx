@@ -4,7 +4,6 @@ import { Icon } from "./Sprite";
 import { Dock } from "./Dock";
 import { ThemeToggle } from "./ThemeToggle";
 import { profile } from "@/content/profile";
-import { asset } from "@/content/site";
 
 /**
  * The signature frame: a white card floating on warm paper, with a narrow
@@ -37,7 +36,7 @@ export function Shell({ children }: { children: ReactNode }) {
                     aria-label={s.label}
                     target={s.kind === "email" ? undefined : "_blank"}
                     rel={s.kind === "email" ? undefined : "noopener noreferrer"}
-                    className="mb-5 block w-6 transition-colors hover:text-[var(--color-prime)]"
+                    className="mb-5 block w-6 transition-colors hover:text-prime"
                   >
                     <Icon id={s.kind} className="text-2xl" />
                   </a>
@@ -72,26 +71,24 @@ function SiteFooter() {
             <span>.</span>
           </Link>
         </div>
-        <div className="mb-3 text-center md:mb-0 md:w-2/4">
-          <ul>
-            <li className="inline-block text-xs uppercase md:mr-6">
-              <Link href="/#works" className="f-link">
-                works
-              </Link>
-            </li>
-            {profile.resumeHref && (
-              <li className="inline-block text-xs uppercase md:mr-6">
-                <a href={asset(profile.resumeHref)} download className="f-link">
-                  resume
-                </a>
-              </li>
-            )}
-            <li className="inline-block text-xs uppercase">
-              <Link href="/#contact" className="f-link">
-                contact
-              </Link>
-            </li>
-          </ul>
+        {/*
+          The dock already carries works, resume and contact, so
+          repeating them here was pure duplication. The socials are not
+          in the dock, so this is where they earn their place.
+        */}
+        <div className="mb-3 flex justify-center gap-5 md:mb-0 md:w-2/4">
+          {profile.socials.map((social) => (
+            <a
+              key={social.kind}
+              href={social.href}
+              aria-label={social.label}
+              target={social.kind === "email" ? undefined : "_blank"}
+              rel={social.kind === "email" ? undefined : "noopener noreferrer"}
+              className="transition-colors hover:text-prime"
+            >
+              <Icon id={social.kind} className="text-lg" />
+            </a>
+          ))}
         </div>
         <div className="text-center text-xs uppercase md:w-1/4">
           <p className="px-2 py-1">

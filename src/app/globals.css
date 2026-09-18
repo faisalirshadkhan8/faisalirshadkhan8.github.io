@@ -1640,3 +1640,20 @@ button.talk {
     transition-duration: 0.001ms;
   }
 }
+
+/*-------------------------------------------------------------------*  Cal.com modal.
+
+  In dark mode the overlay showed a white band around the calendar. The
+  cause is not Cal's theming, which is correct: inside the iframe the
+  document is `dark` and paints nothing, and Cal's own backdrop is
+  rgba(5,5,5,.8). The white is the browser's default iframe canvas,
+  which is opaque white and sits in front of that backdrop, because the
+  iframe spans the full viewport while the calendar card does not.
+
+  Making the iframe transparent lets Cal's backdrop through.
+\*-------------------------------------------------------------------*/
+
+cal-modal-box iframe.cal-embed {
+  background: transparent !important;
+  color-scheme: normal;
+}
