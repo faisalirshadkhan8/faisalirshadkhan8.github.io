@@ -701,14 +701,6 @@ body {
   wipes in on hover.
 \*-------------------------------------------------------------------*/
 
-.work-group {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
 .work-list {
   margin-top: 0.5rem;
   border-top: 1px solid var(--rule);
@@ -862,37 +854,176 @@ body {
 }
 
 
-.impact__row {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  padding: 16px 0;
+/*-------------------------------------------------------------------*\
+  Stats band and bio.
+
+  The previous version put all of this in a grey card inset inside the
+  white shell, so it sat narrower than the hero above and the works index
+  below and read as boxed-in. The figures were also squeezed into a left
+  column at 40px with labels wrapping to three lines, which undersold the
+  only hard numbers on the page.
+
+  Now: full width, three equal columns, figures large enough to carry the
+  band, and a hairline rule rather than a container.
+\*-------------------------------------------------------------------*/
+
+/* One rule for every small uppercase section label. */
+.section-kicker,
+.work-group {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
-.impact__row:last-child {
+
+.stat {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.stat:last-child {
   border-bottom: 0;
 }
-.impact__n {
-  flex: 0 0 auto;
-  min-width: 92px;
-  font-size: 40px;
+
+@media (min-width: 700px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  .stat {
+    padding: 2.25rem 0;
+    border-bottom: 0;
+  }
+}
+
+.stat__n {
+  font-size: clamp(3rem, 8vw, 4.5rem);
   font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
   color: var(--color-prime);
   font-variant-numeric: tabular-nums;
 }
-.impact__n span {
-  font-size: 0.45em;
+
+.stat__n span {
+  font-size: 0.4em;
   font-weight: 400;
-  margin-left: 2px;
+  margin-left: 0.05em;
+  vertical-align: super;
 }
-@media (max-width: 767px) {
-  .impact__n {
-    min-width: 74px;
-    font-size: 32px;
+
+.stat__label {
+  max-width: 26ch;
+  margin-top: 0.85rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-body);
+}
+
+/*-----------------------------------*\
+  Bio
+\*-----------------------------------*/
+
+.bio {
+  display: grid;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 900px) {
+  .bio {
+    /* The prose leads; the status list is a sidebar, not a second column
+       of equal weight. */
+    grid-template-columns: minmax(0, 1fr) 16rem;
+    gap: 4rem;
   }
 }
+
+.bio__para {
+  max-width: 68ch;
+  margin-top: 1.25rem;
+  line-height: 1.7;
+}
+
+.bio__fun {
+  max-width: 68ch;
+  margin-top: 2rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-prime);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.bio__fun-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+  margin-bottom: 0.3rem;
+}
+
+/*-----------------------------------*\
+  Status list
+\*-----------------------------------*/
+
+.status {
+  margin-top: 1.5rem;
+}
+
+.status__row {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.status__row:last-child {
+  border-bottom: 0;
+}
+
+.status__verb {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.status__icon {
+  font-size: 0.95rem;
+  color: var(--color-prime);
+}
+
+.status__text {
+  margin-top: 0.35rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-strong);
+}
+
+.status__link {
+  border-bottom: 1px solid var(--color-prime);
+  padding-bottom: 1px;
+  transition: color 0.2s ease;
+}
+
+.status__link:hover {
+  color: var(--color-prime);
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

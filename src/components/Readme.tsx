@@ -2,84 +2,74 @@ import { Icon } from "./Sprite";
 import { impact, statusLines, funFact, readme } from "@/content/profile";
 
 /**
- * The intro card: hard numbers on the left, current status and bio on
- * the right. Figures carry this space better than a second copy of the
- * hero artwork.
+ * Numbers, current status and the bio.
+ *
+ * This used to be a grey card inset inside the white shell, narrower
+ * than the sections above and below it, with four unrelated things
+ * stacked in one container and the three figures cramped into a left
+ * column. It now runs the full width like every other section: the
+ * numbers get equal horizontal space as a band, and a rule separates
+ * them from the bio rather than a box enclosing everything.
  */
 export function Readme() {
   return (
-    <div className="m-auto mt-12 px-2 py-4 md:mt-32 md:w-3/4">
-      <div
-        className="rounded-lg border-2 shadow-2xl"
-        style={{
-          background: "var(--surface-raised)",
-          borderColor: "var(--surface-raised)",
-        }}
-      >
-        <div className="grid grid-cols-1 gap-5 p-4 md:grid-cols-2">
-          <div className="pt-2">
-            <p
-              className="mb-4 text-xs font-bold tracking-[0.18em] uppercase"
-              style={{ color: "var(--text-muted)" }}
-            >
-              Impact
+    <section className="mt-16 md:mt-28">
+      <div className="stats">
+        {impact.map((stat) => (
+          <div key={stat.label} className="stat">
+            <p className="stat__n">
+              {stat.value}
+              {stat.suffix && <span>{stat.suffix}</span>}
             </p>
-            <ul>
-              {impact.map((stat) => (
-                <li key={stat.label} className="impact__row">
-                  <span className="impact__n">
-                    {stat.value}
-                    {stat.suffix && <span>{stat.suffix}</span>}
-                  </span>
-                  <span className="text-sm leading-relaxed">{stat.label}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="stat__label">{stat.label}</p>
           </div>
+        ))}
+      </div>
 
-          <div className="pt-10">
-            {/* flex keeps the icon beside the text; a long status line
-                wraps under itself rather than under the icon. */}
+      <div className="bio">
+        <div className="bio__main">
+          <h2 className="section-kicker">README</h2>
+          <div className="kj-border" />
+          {readme.map((para, i) => (
+            <p key={i} className="bio__para">
+              {para}
+            </p>
+          ))}
+          <p className="bio__fun">
+            <span className="bio__fun-label">Fun fact</span>
+            {funFact}
+          </p>
+        </div>
+
+        <aside className="bio__side">
+          <h3 className="section-kicker">Currently</h3>
+          <div className="kj-border" />
+          <dl className="status">
             {statusLines.map((line) => (
-              <div key={line.text} className="mt-2 flex gap-2">
-                <Icon id={line.icon} className="mt-1 shrink-0 text-lg" />
-                <p>
-                  {line.verb}{" "}
+              <div key={line.text} className="status__row">
+                <dt className="status__verb">
+                  <Icon id={line.icon} className="status__icon" />
+                  {line.verb}
+                </dt>
+                <dd className="status__text">
                   {line.href ? (
                     <a
                       href={line.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-bold underline"
+                      className="status__link"
                     >
                       {line.text}
                     </a>
                   ) : (
-                    <span className="font-bold">{line.text}</span>
+                    line.text
                   )}
-                </p>
+                </dd>
               </div>
             ))}
-            <p className="mt-4">
-              <span className="font-bold">Fun fact:</span> {funFact}
-            </p>
-          </div>
-        </div>
-
-        <div className="p-4">
-          <div className="mt-10">
-            <div className="mb-5 text-lg">
-              <span className="font-medium uppercase">README</span>
-              <div className="kj-border" />
-            </div>
-            {readme.map((para, i) => (
-              <p key={i} className={i > 0 ? "mt-3" : undefined}>
-                {para}
-              </p>
-            ))}
-          </div>
-        </div>
+          </dl>
+        </aside>
       </div>
-    </div>
+    </section>
   );
 }
