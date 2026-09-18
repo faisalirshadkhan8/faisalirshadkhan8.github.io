@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { profile } from "@/content/profile";
 
 /**
- * The "let's talk" disc, with the blank compose window removed.
+ * The "email me" disc, with the blank compose window removed.
  *
  * A bare `mailto:` asks the visitor to write an email from nothing, and
  * silently does nothing at all for anyone using webmail without a
@@ -114,10 +114,13 @@ export function ContactDisc() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="contact-panel"
+          /* The label is split across two lines for the circle, which
+             would otherwise be announced as one run-together word. */
+          aria-label="Email me"
         >
-          <span className="talk__text">
-            <span>let&rsquo;s</span>
-            <span className="talk__l2">talk</span>
+          <span className="talk__text" aria-hidden="true">
+            <span>Email</span>
+            <span className="talk__l2">me</span>
           </span>
         </button>
         <div className="talk-pulse" aria-hidden="true" />

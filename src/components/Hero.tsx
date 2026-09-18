@@ -2,18 +2,7 @@ import { ContactDisc } from "./ContactDisc";
 import { Medallion } from "./Medallion";
 import { profile } from "@/content/profile";
 
-/**
- * Letter-by-letter name reveal, speech bubble, and the circular
- * "let's talk" disc, carried over from the source theme.
- *
- * What changed: the tagline used to sit in a 16rem column beside a large
- * empty gap, so a two-line sentence wrapped to five cramped ones. The
- * copy column is now sized by its own measure, and the space that was
- * dead below the hero carries the stack instead, so the first screen
- * says what the work actually is. The disc itself is ContactDisc.
- */
 export function Hero() {
-  // Each letter gets its own delay, continuing across line breaks.
   let index = 0;
 
   return (
