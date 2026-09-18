@@ -1,4 +1,10 @@
-import type { Profile, SkillBlock, ImpactStat, StatusLine } from "./types";
+import type {
+  Profile,
+  SkillBlock,
+  ImpactStat,
+  StatusLine,
+  Job,
+} from "./types";
 
 export const profile: Profile = {
   name: "Muhammad Faisal Irshad",
@@ -72,6 +78,23 @@ export const profile: Profile = {
   ],
 };
 
+/**
+ * Employment history. Techanzy's clients are Techanzy's, not his: this
+ * section exists so the AIOS applications read unambiguously as work
+ * done for an employer.
+ */
+export const experience: Job[] = [
+  {
+    company: "Techanzy Limited",
+    href: "https://implementai.io/",
+    role: "Associate Software Engineer",
+    period: "Feb 2025 — present",
+    location: "Lahore, Pakistan",
+    summary:
+      "Techanzy builds Implement AI, a commercial AI Operating System used by clients in the UK, Ireland and UAE. I own three of its production applications: AIOS Core, AIOS Portal and the Admin App, each built and maintained as the sole developer, in a PR workflow where every change goes through team lead review.",
+  },
+];
+
 export const skills: SkillBlock[] = [
   {
     title: "backend",
@@ -117,9 +140,12 @@ export const statusLines: StatusLine[] = [
     text: "a read-only MCP server, validated end to end with Claude",
   },
   {
+    // "Serving clients across the UK, Ireland and UAE" read as though
+    // they were his own clients. They are Techanzy's; his role is
+    // building the platform those clients use.
     icon: "users",
-    verb: "Serving",
-    text: "clients across the UK, Ireland and UAE",
+    verb: "Working at",
+    text: "Techanzy, on a platform used across the UK, Ireland and UAE",
   },
   {
     icon: "seedling",

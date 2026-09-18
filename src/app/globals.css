@@ -343,6 +343,24 @@ body {
   animation: pulse-out 1.6s ease-out 1.4s forwards;
 }
 
+/*
+  On hover the ring repeats, so the disc answers the pointer instead of
+  pulsing at everyone continuously. `infinite` overrides the one-shot
+  entrance above; the 0.2s delay keeps a pointer merely crossing the disc
+  from firing it.
+*/
+.talk-wrapper:hover .talk-pulse,
+.talk-wrapper:focus-within .talk-pulse {
+  animation: pulse-out 1.8s ease-out 0.2s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .talk-wrapper:hover .talk-pulse,
+  .talk-wrapper:focus-within .talk-pulse {
+    animation: none;
+  }
+}
+
 @keyframes pulse-out {
   0% {
     transform: scale(0);
@@ -860,6 +878,84 @@ button.talk {
     .scene__img--7 { --a: 74%; --b: 86%; }
     .skill-reveal--4 { --a: 84%; --b: 100%; }
   }
+}
+
+/*-------------------------------------------------------------------*\
+  Experience.
+  Same hairline-rule language as the works index below it, so the two
+  read as one continuous record rather than two unrelated treatments.
+\*-------------------------------------------------------------------*/
+
+.exp {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.exp__row {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.exp__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+}
+
+.exp__company {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+.exp__link {
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.exp__link:hover,
+.exp__link:focus-visible {
+  color: var(--color-prime);
+  border-bottom-color: var(--color-prime);
+}
+
+.exp__period {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.exp__role {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.exp__dot {
+  color: var(--color-prime);
+}
+
+.exp__location {
+  font-weight: 400;
+}
+
+.exp__summary {
+  max-width: 66ch;
+  margin-top: 0.85rem;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 /*-------------------------------------------------------------------*\

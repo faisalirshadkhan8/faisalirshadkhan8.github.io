@@ -69,6 +69,24 @@ export interface Profile {
   socials: SocialLink[];
 }
 
+/**
+ * One employment entry. Its purpose is to make the working relationship
+ * explicit: the AIOS applications are work done at an employer, not
+ * products of one's own, and a portfolio that does not say so invites
+ * the wrong reading.
+ */
+export interface Job {
+  company: string;
+  /** Link to the employer or the product, if there is a public one. */
+  href?: string;
+  role: string;
+  /** e.g. "Feb 2025 — present". */
+  period: string;
+  location: string;
+  /** One or two sentences: what the company does, and what you own. */
+  summary: string;
+}
+
 export interface SkillBlock {
   /** e.g. "backend" — rendered uppercase. */
   title: string;

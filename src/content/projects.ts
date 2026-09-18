@@ -12,7 +12,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Supabase", "Azure", "Grafana"],
     summary:
       "Internal analytics and operations platform for the whole Implement AI team, built from the ground up as the sole developer.",
-    category: "Implement AI",
+    category: "Techanzy · Implement AI",
     period: "2025 — present",
     tag: "Commercial product · internal",
     visual: { kind: "gradient", from: "#4a6fb5", to: "#2f4a7d" },
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Supabase", "FastAPI", "Azure", "Grafana"],
     summary:
       "A no-code workflow builder that lets non-technical users chain AI agents into ordered, resumable runs with human review checkpoints.",
-    category: "Implement AI",
+    category: "Techanzy · Implement AI",
     period: "2025 — present",
     tag: "Commercial product · internal",
     visual: { kind: "gradient", from: "#3f7a6d", to: "#26514a" },
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "Supabase", "Stripe", "SendGrid", "Grafana"],
     summary:
       "Payments, security and access control for the platform: Stripe checkout and invoicing, webhook-driven confirmation, and a partner portal.",
-    category: "Implement AI",
+    category: "Techanzy · Implement AI",
     period: "2025 — present",
     tag: "Commercial product · internal",
     visual: { kind: "gradient", from: "#ab5838", to: "#743722" },
@@ -190,7 +190,7 @@ export const projects: Project[] = [
 ];
 
 /** Category order on the home page; unlisted categories follow, alphabetically. */
-export const categoryOrder = ["Implement AI", "Personal Projects"];
+export const categoryOrder = ["Techanzy · Implement AI", "Personal Projects"];
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
