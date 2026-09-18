@@ -13,6 +13,7 @@ export const projects: Project[] = [
     summary:
       "Internal analytics and operations platform for the whole Implement AI team, built from the ground up as the sole developer.",
     category: "Implement AI",
+    period: "2025 — present",
     tag: "Commercial product · internal",
     visual: { kind: "gradient", from: "#4a6fb5", to: "#2f4a7d" },
     order: 1,
@@ -40,6 +41,7 @@ export const projects: Project[] = [
     summary:
       "A no-code workflow builder that lets non-technical users chain AI agents into ordered, resumable runs with human review checkpoints.",
     category: "Implement AI",
+    period: "2025 — present",
     tag: "Commercial product · internal",
     visual: { kind: "gradient", from: "#3f7a6d", to: "#26514a" },
     order: 2,
@@ -66,6 +68,7 @@ export const projects: Project[] = [
     summary:
       "Payments, security and access control for the platform: Stripe checkout and invoicing, webhook-driven confirmation, and a partner portal.",
     category: "Implement AI",
+    period: "2025 — present",
     tag: "Commercial product · internal",
     visual: { kind: "gradient", from: "#ab5838", to: "#743722" },
     order: 3,
@@ -93,6 +96,7 @@ export const projects: Project[] = [
     summary:
       "A production-grade job application tracker with async AI features, 2FA, and 143+ automated tests behind CI/CD.",
     category: "Personal Projects",
+    period: "2025",
     href: "https://github.com/faisalirshadkhan8",
     visual: { kind: "gradient", from: "#5b5bd6", to: "#3a3a96" },
     order: 4,
@@ -118,6 +122,7 @@ export const projects: Project[] = [
     summary:
       "Final year project: ML and NLP for depression screening and suicide risk detection in Roman Urdu, with speech-to-text for low-literacy users.",
     category: "Personal Projects",
+    period: "2025",
     visual: { kind: "gradient", from: "#a04a7a", to: "#6b2f52" },
     order: 5,
     detail: {
@@ -141,6 +146,7 @@ export const projects: Project[] = [
     summary:
       "A retrieval-augmented generation pipeline over PDF, DOCX and TXT documents, with context validation to reduce hallucinations.",
     category: "Personal Projects",
+    period: "Oct — Dec 2025",
     visual: { kind: "gradient", from: "#3d8ebd", to: "#26566f" },
     order: 6,
     detail: {
@@ -164,6 +170,7 @@ export const projects: Project[] = [
     summary:
       "An e-commerce backend with 30+ REST APIs over a normalized schema, with inventory reservation and role-based permissions.",
     category: "Personal Projects",
+    period: "Jun — Jul 2025",
     visual: { kind: "gradient", from: "#4f7a3f", to: "#2f4a26" },
     order: 7,
     detail: {

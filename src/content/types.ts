@@ -81,6 +81,8 @@ export interface Project {
   href?: string;
   /** Small badge on the card, e.g. "Client work · access restricted". */
   tag?: string;
+  /** Right-aligned on the works row, e.g. "2025" or "2025 — present". */
+  period?: string;
   visual: ProjectVisual;
   /** Long-form body for /projects/<slug>/. Markdown-ish plain paragraphs. */
   detail?: {

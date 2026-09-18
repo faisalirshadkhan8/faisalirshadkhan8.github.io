@@ -532,76 +532,177 @@ body {
   }
 }
 
-.proj {
-  display: block;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  background: var(--surface-card);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 12px 44px rgba(0, 0, 0, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+/*-------------------------------------------------------------------*\
+  Works index.
 
-a.proj:hover,
-a.proj:focus-visible {
-  transform: translateY(-5px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06), 0 20px 60px rgba(0, 0, 0, 0.12);
-}
+  This replaced a grid of seven identical gradient tiles. Each tile put a
+  paragraph of body text on saturated colour with most of the block left
+  empty, and gave every project the same weight, so the section read as
+  filler. A numbered list states the same facts in scanning order and
+  needs no decorative colour at all: the only accent is the rule that
+  wipes in on hover.
+\*-------------------------------------------------------------------*/
 
-.proj__media {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 22px;
-}
-
-.proj__blurb {
-  max-width: 42ch;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #fff;
-}
-
-.proj__media--diagram {
-  background: var(--surface-diagram);
-  padding: 0;
-}
-.proj__media--diagram img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.proj__tag {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  font-size: 11px;
+.work-group {
+  font-size: 12px;
   font-weight: 700;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  letter-spacing: 0.13em;
-  color: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
-  padding: 5px 11px;
-}
-
-.proj__bar {
-  padding: 16px 20px 18px;
-  border-top: 1px solid var(--rule);
-}
-.proj__name {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-strong);
-}
-.proj__stack {
-  margin-top: 4px;
-  font-size: 13px;
   color: var(--text-muted);
 }
+
+.work-list {
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--rule);
+}
+
+.work-row {
+  border-bottom: 1px solid var(--rule);
+}
+
+.work-row__link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr auto;
+  gap: 0 1rem;
+  align-items: start;
+  padding: 1.5rem 0.25rem;
+  transition: padding-left 0.3s var(--ease-out-soft);
+}
+
+/* A coral rule wipes across the row on hover. Transform-only, so it is
+   cheap to animate and leaves layout untouched. */
+.work-row__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--color-prime);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-out-soft);
+}
+
+.work-row__link:hover::after,
+.work-row__link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (min-width: 768px) {
+  .work-row__link:hover,
+  .work-row__link:focus-visible {
+    padding-left: 0.75rem;
+  }
+}
+
+.work-row__num {
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--color-prime);
+  padding-top: 0.5rem;
+}
+
+/* The body sets the row's measure. Uncapped, a summary runs the full
+   card width and the eye loses the start of the next line. */
+.work-row__body {
+  display: block;
+  min-width: 0;
+  max-width: 62ch;
+}
+
+.work-row__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.75rem;
+}
+
+.work-row__name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+@media (min-width: 768px) {
+  .work-row__name {
+    font-size: 1.75rem;
+  }
+}
+
+.work-row__period {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.work-row__summary {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.work-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin-top: 0.7rem;
+}
+
+.work-row__stack {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* The restriction notice is a fact about access, not a label for the
+   work, so it stays quiet: a hairline outline, not a filled pill. */
+.work-row__tag {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+.work-row__arrow {
+  align-self: start;
+  padding-top: 0.35rem;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  transition: transform 0.3s var(--ease-out-soft), color 0.3s ease;
+}
+
+.work-row__link:hover .work-row__arrow,
+.work-row__link:focus-visible .work-row__arrow {
+  transform: translateX(4px);
+  color: var(--color-prime);
+}
+
+@media (max-width: 767px) {
+  .work-row__link {
+    grid-template-columns: 1.75rem 1fr;
+    padding: 1.25rem 0;
+  }
+  /* The arrow is decorative; on a narrow row the name needs the width. */
+  .work-row__arrow {
+    display: none;
+  }
+}
+
 
 .impact__row {
   display: flex;

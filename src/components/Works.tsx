@@ -1,4 +1,4 @@
-import { ProjectCard } from "./ProjectCard";
+import { WorkRow } from "./WorkRow";
 import { SvgButton } from "./SvgButton";
 import { projectsByCategory } from "@/content/projects";
 import { profile } from "@/content/profile";
@@ -6,6 +6,20 @@ import { asset } from "@/content/site";
 
 export function Works() {
   const groups = projectsByCategory();
+
+  // Numbering runs continuously across groups, so the list reads as one
+  // index rather than restarting per section. Computed up front: a
+  // counter incremented while rendering mutates during render.
+  const numbered = groups.reduce<
+    { category: string; items: { project: (typeof groups)[number]["items"][number]; n: number }[] }[]
+  >((acc, group) => {
+    const offset = acc.reduce((sum, g) => sum + g.items.length, 0);
+    acc.push({
+      category: group.category,
+      items: group.items.map((project, i) => ({ project, n: offset + i + 1 })),
+    });
+    return acc;
+  }, []);
 
   return (
     <section id="works" className="mt-12 md:mt-32">
@@ -18,27 +32,20 @@ export function Works() {
       <p className="mt-2 text-lg">A few of my past and present projects</p>
       <div className="kj-border" />
 
-      {groups.map((group) => (
-        <div key={group.category}>
-          <h3
-            className="mt-10 text-2xl font-bold capitalize"
-            style={{ color: "var(--text-strong)" }}
-          >
-            {group.category}
-          </h3>
-          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
-            {group.items.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+      {numbered.map((group) => (
+        <div key={group.category} className="mt-12">
+          <h3 className="work-group">{group.category}</h3>
+          <ul className="work-list">
+            {group.items.map(({ project, n }) => (
+              <WorkRow key={project.slug} project={project} index={n} />
             ))}
-          </div>
+          </ul>
         </div>
       ))}
 
       {profile.resumeHref && (
-        <div className="mt-10 flex max-w-xl flex-col items-center justify-between px-5 py-5 shadow-2xl md:h-40 md:flex-row md:px-10 md:py-0">
-          <p className="mb-3 text-lg font-bold md:mb-0">
-            I cook with these ingredients 👉
-          </p>
+        <div className="mt-14 flex max-w-xl flex-col items-center justify-between gap-4 md:flex-row">
+          <p className="text-lg font-bold">I cook with these ingredients 👉</p>
           <SvgButton
             href={asset(profile.resumeHref)}
             label="MY RESUME"
