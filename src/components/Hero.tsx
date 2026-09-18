@@ -1,6 +1,6 @@
 import { ContactDisc } from "./ContactDisc";
+import { Medallion } from "./Medallion";
 import { profile } from "@/content/profile";
-import { asset } from "@/content/site";
 
 /**
  * Letter-by-letter name reveal, speech bubble, and the circular
@@ -94,23 +94,7 @@ export function Hero() {
       </div>
 
       <div className="hero__figure">
-        <figure className="hero-figure">
-          {profile.portrait ? (
-            // eslint-disable-next-line @next/next/no-img-element -- static export, no optimizer
-            <img
-              src={asset(profile.portrait)}
-              alt={`Portrait of ${profile.name}`}
-              width={760}
-              height={760}
-              fetchPriority="high"
-              decoding="async"
-            />
-          ) : (
-            <span className="hero-initials" aria-hidden="true">
-              {profile.initials.toUpperCase()}
-            </span>
-          )}
-        </figure>
+        <Medallion />
       </div>
     </header>
   );

@@ -64,8 +64,17 @@ export interface Profile {
   contactReasons: ContactReason[];
   /** Path to the résumé within /public, or null to hide résumé links. */
   resumeHref: string | null;
-  /** Square portrait within /public, or null to render an initials medallion. */
+  /**
+   * Square portrait within /public, or null to render an initials
+   * medallion instead.
+   */
   portrait: string | null;
+  /**
+   * Optional square illustrated avatar. When set it is the face shown at
+   * rest and `portrait` becomes the reverse, revealed by a flip on hover.
+   * Both images must be square, since the medallion is a circle.
+   */
+  avatar: string | null;
   socials: SocialLink[];
 }
 

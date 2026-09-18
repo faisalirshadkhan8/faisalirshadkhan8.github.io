@@ -705,32 +705,58 @@ button.talk {
     margin: 0 0 0.5rem;
   }
 }
+/*-------------------------------------------------------------------*\
+  Hero medallion, with the avatar-to-portrait flip.
 
-.hero-figure {
+  The circle deliberately lives on the faces, not on the container.
+  CSS Transforms Level 2 defines a set of "grouping property values"
+  which force `transform-style: preserve-3d` to compute to `flat`:
+  overflow (other than visible/clip), clip-path, opacity below 1,
+  filter, mask-image, mix-blend-mode, isolation and contain: paint.
+  Any one of them on the 3D element or on an ancestor below the
+  perspective flattens the scene, and the flip degrades into a 2D
+  slide with no warning.
+
+  So `.medallion__card` stays pristine, and `border-radius: 50%` plus
+  `overflow: hidden` move down onto each face, which are leaves of the
+  3D context and safe to clip. Note that swapping in `clip-path:
+  circle(50%)` would not have helped; it is on the same list.
+\*-------------------------------------------------------------------*/
+
+.medallion {
   position: relative;
   width: min(260px, 62vw);
   aspect-ratio: 1;
   margin-inline: auto;
   border-radius: 50%;
-  overflow: hidden;
   background: var(--portrait-bg);
   display: flex;
+  /* Non-flipping variants clip here; the flip variant clears this
+     below, because it is exactly the property that would flatten it. */
+  overflow: hidden;
 }
 
 @media (min-width: 1280px) {
-  .hero-figure {
+  .medallion {
     width: 300px;
   }
 }
 
-.hero-figure img {
+/*
+  `cover` rather than `contain`: the images are cropped tight to the
+  subject, so contain left a ring of empty medallion around them. The
+  object-position bias keeps the face centred when the circle crops the
+  sides.
+*/
+.medallion__img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 50% 42%;
   display: block;
 }
 
-.hero-initials {
+.medallion__initials {
   margin: auto;
   font-size: clamp(4rem, 18vw, 7rem);
   font-weight: 900;
@@ -738,6 +764,90 @@ button.talk {
   color: var(--color-prime);
   user-select: none;
 }
+
+/*-----------------------------------*\
+  Flip variant
+\*-----------------------------------*/
+
+.medallion--flip {
+  /* Must not clip: see the note above. The faces carry the circle. */
+  overflow: visible;
+  background: none;
+  perspective: 1000px;
+}
+
+.medallion__card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Nothing may be added here that appears in the grouping list. */
+}
+
+.medallion__face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--portrait-bg);
+  backface-visibility: hidden;
+}
+
+/*
+  translateZ separates the two faces in depth so the compositor never
+  has to break a tie between coplanar surfaces, which is what produces
+  Safari's backface bleed-through on first paint. On the back face the
+  translate comes after the rotation so it pushes toward the viewer in
+  the face's own rotated space.
+*/
+.medallion__face--front {
+  transform: translateZ(1px);
+}
+
+.medallion__face--back {
+  transform: rotateY(180deg) translateZ(1px);
+}
+
+/*
+  Gated on a real hover-capable pointer. `hover: hover` alone has false
+  positives on some Android builds that emulate hover on long press, so
+  `pointer: fine` is paired with it. Touch therefore gets the avatar and
+  no sticky half-flipped state.
+*/
+@media (hover: hover) and (pointer: fine) {
+  .medallion__card {
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .medallion--flip:hover .medallion__card,
+  .medallion--flip:focus-within .medallion__card {
+    transform: rotateY(180deg);
+  }
+}
+
+/*
+  Reduced motion keeps the reveal but drops the rotation, which is the
+  part that can trigger vestibular symptoms. Opacity on a face is fine;
+  on the card it would flatten the scene.
+*/
+@media (prefers-reduced-motion: reduce) {
+  .medallion__card {
+    transform: none !important;
+    transition: none;
+  }
+
+  .medallion__face--back {
+    transform: rotateY(0deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .medallion--flip:hover .medallion__face--back,
+  .medallion--flip:focus-within .medallion__face--back {
+    opacity: 1;
+  }
+}
+
 
 .svg-btn {
   display: inline-block;

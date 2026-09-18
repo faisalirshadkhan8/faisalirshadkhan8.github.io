@@ -62,7 +62,9 @@ export const profile: Profile = {
     },
   ],
   resumeHref: "/assets/Faisal_CV_SE__LHR_.pdf",
-  portrait: null,
+  // Illustrated avatar at rest; the real photograph on the reverse.
+  avatar: "/assets/images/avatar.webp",
+  portrait: "/assets/images/portrait.webp",
   socials: [
     {
       kind: "linkedin",
