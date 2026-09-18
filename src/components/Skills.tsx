@@ -109,11 +109,7 @@ export function Skills() {
                       fill="var(--color-prime)"
                       opacity="0.4"
                     />
-                    <text
-                      transform="translate(80 38)"
-                      textAnchor="middle"
-                      fontSize="20"
-                    >
+                    <text x="75" y="38" textAnchor="start">
                       SEE MY WORKS
                     </text>
                   </svg>

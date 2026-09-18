@@ -18,7 +18,36 @@ export default function Home() {
     jobTitle: profile.role,
     url: absoluteUrl("/"),
     email: `mailto:${profile.email}`,
-    address: { "@type": "PostalAddress", name: profile.location },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Lahore",
+      addressCountry: "PK",
+    },
+    worksFor: {
+      "@type": "Organization",
+      name: "Techanzy Limited",
+      url: "https://implementai.io/",
+    },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Superior University",
+    },
+    knowsAbout: [
+      "Python",
+      "FastAPI",
+      "Django",
+      "Next.js",
+      "TypeScript",
+      "PostgreSQL",
+      "Celery",
+      "Redis",
+      "Docker",
+      "Model Context Protocol",
+      "LangChain",
+      "CrewAI",
+      "Retrieval-augmented generation",
+      "Workflow orchestration",
+    ],
     sameAs: profile.socials
       .filter((s) => s.kind !== "email")
       .map((s) => s.href),

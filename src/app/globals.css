@@ -376,9 +376,13 @@ body {
 .svg-btn rect {
   transition: width 0.4s var(--ease-spring), fill 0.4s ease, opacity 0.4s ease;
 }
+/* The label sits to the right of the 60px disc and must clear it, so it
+   is anchored at the start rather than centred — a centred anchor put
+   longer labels back over the circle. */
 .svg-btn text {
   font-family: var(--font-sans);
   font-weight: 700;
+  font-size: 17px;
   fill: var(--text-strong);
   transition: fill 0.2s linear;
 }
@@ -480,16 +484,21 @@ body {
       view-timeline: --skills block;
     }
 
-    .scene__img--1 { --a: 0%;  --b: 14%; }
-    .scene__img--2 { --a: 6%;  --b: 20%; }
-    .scene__img--3 { --a: 13%; --b: 27%; }
-    .skill-reveal--1 { --a: 20%; --b: 40%; }
-    .scene__img--5 { --a: 36%; --b: 50%; }
-    .scene__img--6 { --a: 44%; --b: 58%; }
-    .skill-reveal--2 { --a: 50%; --b: 70%; }
-    .scene__img--4 { --a: 66%; --b: 80%; }
-    .scene__img--7 { --a: 73%; --b: 87%; }
-    .skill-reveal--3 { --a: 84%; --b: 100%; }
+    /* Illustration layers and text blocks interleave, so the copy lands
+       in the gaps between pieces of the scene assembling. Slots run to
+       --4 so a third skill block still gets its own beat before the
+       button; extra blocks beyond that share the final slot. */
+    .scene__img--1 { --a: 0%;  --b: 12%; }
+    .scene__img--2 { --a: 5%;  --b: 17%; }
+    .scene__img--3 { --a: 11%; --b: 23%; }
+    .skill-reveal--1 { --a: 17%; --b: 33%; }
+    .scene__img--5 { --a: 30%; --b: 42%; }
+    .skill-reveal--2 { --a: 38%; --b: 54%; }
+    .scene__img--6 { --a: 50%; --b: 62%; }
+    .skill-reveal--3 { --a: 58%; --b: 74%; }
+    .scene__img--4 { --a: 68%; --b: 80%; }
+    .scene__img--7 { --a: 74%; --b: 86%; }
+    .skill-reveal--4 { --a: 84%; --b: 100%; }
   }
 }
 

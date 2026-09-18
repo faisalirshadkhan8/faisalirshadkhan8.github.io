@@ -38,10 +38,12 @@ export function Readme() {
           </div>
 
           <div className="pt-10">
+            {/* flex keeps the icon beside the text; a long status line
+                wraps under itself rather than under the icon. */}
             {statusLines.map((line) => (
-              <div key={line.text} className="mt-2">
-                <Icon id={line.icon} className="inline-block text-lg" />
-                <p className="ml-1 inline-block">
+              <div key={line.text} className="mt-2 flex gap-2">
+                <Icon id={line.icon} className="mt-1 shrink-0 text-lg" />
+                <p>
                   {line.verb}{" "}
                   {line.href ? (
                     <a
