@@ -1,3 +1,4 @@
+import { ContactDisc } from "./ContactDisc";
 import { profile } from "@/content/profile";
 import { asset } from "@/content/site";
 
@@ -8,8 +9,8 @@ import { asset } from "@/content/site";
  * What changed: the tagline used to sit in a 16rem column beside a large
  * empty gap, so a two-line sentence wrapped to five cramped ones. The
  * copy column is now sized by its own measure, and the space that was
- * dead below the hero carries the stack and a proof point instead, so
- * the first screen says what the work actually is.
+ * dead below the hero carries the stack instead, so the first screen
+ * says what the work actually is. The disc itself is ContactDisc.
  */
 export function Hero() {
   // Each letter gets its own delay, continuing across line breaks.
@@ -88,24 +89,7 @@ export function Hero() {
           className="rise hero__cta"
           style={{ "--d": "1.1s" } as React.CSSProperties}
         >
-          <div className="talk-wrapper">
-            <a
-              href={`mailto:${profile.email}`}
-              aria-label={`Email ${profile.name}`}
-            >
-              <div className="talk">
-                <span className="talk__text">
-                  <span>let&rsquo;s</span>
-                  <span className="talk__l2">talk</span>
-                </span>
-              </div>
-            </a>
-            <div className="talk-pulse" aria-hidden="true" />
-          </div>
-
-          {profile.heroProof && (
-            <p className="hero__proof">{profile.heroProof}</p>
-          )}
+          <ContactDisc />
         </div>
       </div>
 

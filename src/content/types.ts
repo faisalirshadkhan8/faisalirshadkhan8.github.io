@@ -15,6 +15,24 @@ export interface SocialLink {
   href: string;
 }
 
+/**
+ * One reason someone might get in touch. Each becomes a chip that opens
+ * the visitor's mail client with the subject and a starter body already
+ * written, so nobody faces a blank compose window.
+ */
+export interface ContactReason {
+  /** Chip text, e.g. "Hiring". */
+  label: string;
+  /** Email subject line. */
+  subject: string;
+  /**
+   * Starter body. Written as the visitor, not as you: they only fill in
+   * the blanks. Use 
+ for line breaks.
+   */
+  body: string;
+}
+
 export interface Profile {
   /** Full name, e.g. "Ada Lovelace". */
   name: string;
@@ -42,6 +60,8 @@ export interface Profile {
    * of shipped work. Null to omit it.
    */
   heroProof: string | null;
+  /** Reasons offered when the hero's contact disc is opened. */
+  contactReasons: ContactReason[];
   /** Path to the résumé within /public, or null to hide résumé links. */
   resumeHref: string | null;
   /** Square portrait within /public, or null to render an initials medallion. */

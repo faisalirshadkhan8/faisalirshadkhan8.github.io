@@ -17,6 +17,44 @@ export const profile: Profile = {
   // Null hides it. The same fact is already the "3" stat and appears in
   // the bio, so the hero does not need to say it a third time.
   heroProof: null,
+  /*
+    Written from the sender's side, with blanks marked so it is obvious
+    what to fill in. A starter body is the whole point: a blank compose
+    window is where most "I'll email them later" intentions die.
+  */
+  contactReasons: [
+    {
+      label: "Hiring",
+      subject: "Role at [company]",
+      body:
+        "Hi Faisal,\n\n" +
+        "We're hiring and your work looked like a fit.\n\n" +
+        "Role: \n" +
+        "Stack: \n" +
+        "Location / remote: \n\n" +
+        "Happy to share more.\n\n" +
+        "— ",
+    },
+    {
+      label: "Freelance",
+      subject: "Project I'd like your help with",
+      body:
+        "Hi Faisal,\n\n" +
+        "I have a project I think you'd be right for.\n\n" +
+        "What it is: \n" +
+        "Rough timeline: \n" +
+        "Budget range: \n\n" +
+        "— ",
+    },
+    {
+      label: "Just saying hi",
+      subject: "Hello from your portfolio",
+      body:
+        "Hi Faisal,\n\n" +
+        "Came across your portfolio and wanted to say hello.\n\n" +
+        "— ",
+    },
+  ],
   resumeHref: "/assets/Faisal_CV_SE__LHR_.pdf",
   portrait: null,
   socials: [
