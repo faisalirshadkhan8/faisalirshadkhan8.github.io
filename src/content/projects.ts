@@ -9,7 +9,7 @@ export const projects: Project[] = [
   {
     slug: "aios-core",
     name: "AIOS Core",
-    stack: ["FastAPI", "PostgreSQL", "Azure Blob"],
+    stack: ["Next.js", "Supabase", "Azure", "Grafana"],
     summary:
       "Internal analytics and operations platform for the whole Implement AI team, built from the ground up as the sole developer.",
     category: "Implement AI",
@@ -37,7 +37,7 @@ export const projects: Project[] = [
   {
     slug: "aios-portal",
     name: "AIOS Portal",
-    stack: ["FastAPI", "Next.js", "CrewAI"],
+    stack: ["Next.js", "Supabase", "FastAPI", "Azure", "Grafana"],
     summary:
       "A no-code workflow builder that lets non-technical users chain AI agents into ordered, resumable runs with human review checkpoints.",
     category: "Implement AI",
@@ -64,7 +64,7 @@ export const projects: Project[] = [
   {
     slug: "aios-admin",
     name: "AIOS Admin App",
-    stack: ["FastAPI", "Stripe", "SendGrid"],
+    stack: ["Next.js", "Supabase", "Stripe", "SendGrid", "Grafana"],
     summary:
       "Payments, security and access control for the platform: Stripe checkout and invoicing, webhook-driven confirmation, and a partner portal.",
     category: "Implement AI",
