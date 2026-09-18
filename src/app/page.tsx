@@ -32,6 +32,20 @@ export default function Home() {
     alumniOf: {
       "@type": "CollegeOrUniversity",
       name: "Superior University",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Lahore",
+        addressCountry: "PK",
+      },
+    },
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "degree",
+      name: "BS Software Engineering",
+      recognizedBy: {
+        "@type": "CollegeOrUniversity",
+        name: "Superior University",
+      },
     },
     knowsAbout: [
       "Python",

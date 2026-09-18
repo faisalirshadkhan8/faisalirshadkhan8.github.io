@@ -131,6 +131,13 @@ export const impact: ImpactStat[] = [
 
 export const statusLines: StatusLine[] = [
   {
+    // Leads the list: for a recruiter it is the one line that decides
+    // whether the rest is worth reading.
+    icon: "dot",
+    verb: "Open to",
+    text: "new opportunities",
+  },
+  {
     icon: "microscope",
     verb: "Building",
     text: "implementai.io",
@@ -151,8 +158,8 @@ export const statusLines: StatusLine[] = [
   },
   {
     icon: "seedling",
-    verb: "Finishing",
-    text: "BS Software Engineering at Superior University",
+    verb: "Graduated",
+    text: "BS Software Engineering, Superior University, 2026",
   },
 ];
 

@@ -2,7 +2,7 @@
 export const iconIds = [
   "envelope", "file", "user-tie", "comment", "sun", "moon", "bars",
   "close", "linkedin", "github", "x", "link", "microscope", "users",
-  "seedling", "bolt", "arrow-left", "arrow-up-right",
+  "seedling", "bolt", "arrow-left", "arrow-up-right", "dot",
 ] as const;
 
 export type IconId = (typeof iconIds)[number];
@@ -47,6 +47,9 @@ export function Sprite() {
       <symbol id="i-bolt" viewBox="0 0 384 512"><path fill="currentColor" d="M0 256L28.5 28c2-16 15.6-28 31.8-28H228.9c17.2 0 29.9 16.1 25.8 32.9L230.7 160H297c17.4 0 30.3 16.5 25.7 33.4l-88 304c-4.7 16.2-21.8 24.4-37.4 18.3s-23.3-21.8-18.6-38L225.3 320H159c-17.4 0-30.3-16.5-25.7-33.4L0 256z" /></symbol>
       <symbol id="i-arrow-left" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" /></symbol>
       <symbol id="i-arrow-up-right" viewBox="0 0 384 512"><path fill="currentColor" d="M328 96c13.3 0 24 10.7 24 24V360c0 13.3-10.7 24-24 24s-24-10.7-24-24V177.9L81 401c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l223-223H88c-13.3 0-24-10.7-24-24s10.7-24 24-24H328z" /></symbol>
+      {/* Availability marker: a filled dot inside a faint ring, the
+          conventional "status" shape. */}
+      <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.22" /><circle cx="12" cy="12" r="5" fill="currentColor" /></symbol>
     </svg>
   );
 }
